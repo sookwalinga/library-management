@@ -1,58 +1,52 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix="c" uri="jakarta.tags.core" %>
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Library Management System</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/styles.css">
-</head>
-<body>
-    <nav class="navbar">
-        <h1>📚 Library Management System</h1>
-        <ul>
-            <li><a href="${pageContext.request.contextPath}/">Home</a></li>
-            <li><a href="${pageContext.request.contextPath}/books">Books</a></li>
-            <li><a href="${pageContext.request.contextPath}/authors">Authors</a></li>
-        </ul>
-    </nav>
+    <%@ taglib prefix="c" uri="jakarta.tags.core" %>
+        <!DOCTYPE html>
+        <html>
 
-    <div class="container">
-        <div class="welcome-banner">
-            <h1>Welcome to the Library</h1>
-            <p>Manage your books and authors efficiently with our system.</p>
-        </div>
+            <head>
+                <title>Library Management System</title>
+                <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/styles.css">
+            </head>
 
-        <div class="dashboard">
-            <div class="card">
-                <h3>Total Books</h3>
-                <div class="number">${totalBooks}</div>
-                <p style="margin-top: 15px;">
-                    <a href="${pageContext.request.contextPath}/books"
-                       class="btn btn-warning">View Books</a>
-                </p>
-            </div>
+            <body>
+                <c:set var="currentPage" value="home" />
+                <%@ include file="common/navbar.jsp" %>
 
-            <div class="card">
-                <h3>Total Authors</h3>
-                <div class="number">${totalAuthors}</div>
-                <p style="margin-top: 15px;">
-                    <a href="${pageContext.request.contextPath}/authors"
-                       class="btn btn-warning">View Authors</a>
-                </p>
-            </div>
+                <div class="page-body">
+                    <div class="container">
+                        <div class="welcome-banner">
+                            <h1>Welcome to the Library</h1>
+                            <p>Manage your books and authors efficiently with our system.</p>
+                        </div>
 
-            <div class="card">
-                <h3>Quick Actions</h3>
-                <p style="margin: 15px 0;">
-                    <a href="${pageContext.request.contextPath}/books/new"
-                       class="btn btn-warning">Add Book</a>
-                </p>
-                <p>
-                    <a href="${pageContext.request.contextPath}/authors/new"
-                       class="btn btn-warning">Add Author</a>
-                </p>
-            </div>
-        </div>
-    </div>
-</body>
-</html>
+                        <div class="dashboard">
+                            <div class="card">
+                                <div class="card-icon">📖</div>
+                                <h3>Total Books</h3>
+                                <div class="number">${totalBooks}</div>
+                                <div class="card-actions">
+                                    <a href="${pageContext.request.contextPath}/books" class="btn">View All Books</a>
+                                    <a href="${pageContext.request.contextPath}/books/new" class="btn btn-success">+ Add
+                                        Book</a>
+                                </div>
+                            </div>
+
+                            <div class="card">
+                                <div class="card-icon">✍️</div>
+                                <h3>Total Authors</h3>
+                                <div class="number">${totalAuthors}</div>
+                                <div class="card-actions">
+                                    <a href="${pageContext.request.contextPath}/authors" class="btn">View All
+                                        Authors</a>
+                                    <a href="${pageContext.request.contextPath}/authors/new" class="btn btn-success">+
+                                        Add Author</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <%@ include file="common/footer.jsp" %>
+            </body>
+
+        </html>
