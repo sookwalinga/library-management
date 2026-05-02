@@ -12,12 +12,15 @@
 
     <div class="page-body">
         <div class="container">
-            <h2>All Authors</h2>
-            <hr class="section-divider">
-
-            <div class="action-bar">
-                <a href="${pageContext.request.contextPath}/authors/new" class="btn btn-success">+ Add New Author</a>
+            <div class="welcome-banner list-header">
+                <div class="banner-text">
+                    <h1>All Authors</h1>
+                </div>
+                <div class="action-bar">
+                    <a href="${pageContext.request.contextPath}/authors/new" class="btn btn-success">+ Add New Author</a>
+                </div>
             </div>
+            <hr class="section-divider">
 
             <c:choose>
                 <c:when test="${empty authors}">

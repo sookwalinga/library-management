@@ -438,6 +438,27 @@ table tbody tr:hover {
     opacity: 0.9;
 }
 
+/* Modifier for list headers */
+.welcome-banner.list-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: left;
+    padding: 30px 40px;
+}
+
+.welcome-banner.list-header .action-bar {
+    margin-bottom: 0;
+}
+
+@media (max-width: 768px) {
+    .welcome-banner.list-header {
+        flex-direction: column;
+        text-align: center;
+        gap: 20px;
+    }
+}
+
 .dashboard {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));

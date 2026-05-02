@@ -56,7 +56,7 @@ public interface BookRepository extends JpaRepository<Book, Long> {
            "b.id, b.title, b.isbn, b.publicationYear, b.genre, b.price, " +
            "a.id, a.name, a.nationality) " +
            "FROM Book b INNER JOIN b.author a " +
-           "WHERE b.genre = :genre " +
+           "WHERE LOWER(b.genre) = LOWER(:genre) " +
            "ORDER BY a.name ASC")
     List<BookAuthorDTO> findBooksWithAuthorsByGenre(@Param("genre") String genre);
 }
