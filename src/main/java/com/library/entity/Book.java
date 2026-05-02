@@ -10,10 +10,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-/**
- * Book entity representing a book in the library.
- * Many books can belong to one author (Many-to-One relationship).
- */
 @Entity
 @Table(name = "books")
 @Getter
@@ -46,10 +42,6 @@ public class Book {
     @Positive(message = "Price must be positive")
     private Double price;
 
-    /**
-     * Many-to-One relationship with Author.
-     * Each book has exactly one author.
-     */
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "author_id", nullable = false)
     private Author author;

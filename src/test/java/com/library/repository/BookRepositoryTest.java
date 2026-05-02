@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.Optional;
 
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
@@ -17,11 +16,7 @@ import com.library.entity.Author;
 import com.library.entity.Book;
 import com.library.entity.BookAuthorDTO;
 
-/**
- * Unit tests for BookRepository, including the custom INNER JOIN query.
- */
 @DataJpaTest
-@DisplayName("BookRepository Tests")
 class BookRepositoryTest {
 
     @Autowired
@@ -49,7 +44,6 @@ class BookRepositoryTest {
     }
 
     @Test
-    @DisplayName("save() should persist a new book")
     void testSaveBook() {
         Book newBook = new Book("New Book", "ISBN-NEW", 2024, "Fiction", 15.00, author);
         Book saved = bookRepository.save(newBook);
@@ -57,14 +51,12 @@ class BookRepositoryTest {
     }
 
     @Test
-    @DisplayName("findAll() should return all saved books")
     void testFindAllBooks() {
         List<Book> books = bookRepository.findAll();
         assertThat(books).hasSize(2);
     }
 
     @Test
-    @DisplayName("findByIsbn() should return correct book")
     void testFindByIsbn() {
         Optional<Book> found = bookRepository.findByIsbn("ISBN-001");
         assertThat(found).isPresent();
@@ -72,14 +64,12 @@ class BookRepositoryTest {
     }
 
     @Test
-    @DisplayName("findByAuthorId() should return books by that author")
     void testFindByAuthorId() {
         List<Book> books = bookRepository.findByAuthorId(author.getId());
         assertThat(books).hasSize(2);
     }
 
     @Test
-    @DisplayName("Custom inner join query should return all book-author pairs")
     void testFindAllBooksWithAuthors() {
         List<BookAuthorDTO> results = bookRepository.findAllBooksWithAuthors();
         assertThat(results).hasSize(2);
@@ -91,7 +81,6 @@ class BookRepositoryTest {
     }
 
     @Test
-    @DisplayName("Inner join with genre filter should return only matching books")
     void testFindBooksWithAuthorsByGenre() {
         List<BookAuthorDTO> results = bookRepository.findBooksWithAuthorsByGenre("Fantasy");
         assertThat(results).hasSize(2);
@@ -99,7 +88,6 @@ class BookRepositoryTest {
     }
 
     @Test
-    @DisplayName("Saving a book with a duplicate ISBN should throw DataIntegrityViolationException")
     void testDuplicateIsbnThrowsException() {
         Book duplicate = new Book("Another Book", "ISBN-001", 2020, "Fiction", 10.0, author);
         assertThrows(DataIntegrityViolationException.class,

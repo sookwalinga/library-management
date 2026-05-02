@@ -11,35 +11,14 @@ import org.springframework.stereotype.Repository;
 import com.library.entity.Book;
 import com.library.entity.BookAuthorDTO;
 
-/**
- * Repository interface for Book entity.
- * Includes a custom INNER JOIN query method.
- */
 @Repository
 public interface BookRepository extends JpaRepository<Book, Long> {
 
-       /**
-        * Find a book by its ISBN.
-        *
-        * @param isbn the ISBN to search for
-        * @return Optional containing the book if found
-        */
        Optional<Book> findByIsbn(String isbn);
 
-       /**
-        * Find all books by a specific author ID.
-        *
-        * @param authorId the author's ID
-        * @return list of books written by that author
-        */
        List<Book> findByAuthorId(Long authorId);
 
-       /**
-        * CUSTOM QUERY: Performs an INNER JOIN between books and authors.
-        * Returns combined book and author information as a DTO.
-        *
-        * @return list of BookAuthorDTO containing joined data
-        */
+       // joins books with their authors so I can display both in a single query
        @Query("SELECT new com.library.entity.BookAuthorDTO(" +
                      "b.id, b.title, b.isbn, b.publicationYear, b.genre, b.price, " +
                      "a.id, a.name, a.nationality) " +
@@ -47,12 +26,6 @@ public interface BookRepository extends JpaRepository<Book, Long> {
                      "ORDER BY a.name ASC, b.title ASC")
        List<BookAuthorDTO> findAllBooksWithAuthors();
 
-       /**
-        * CUSTOM QUERY: Inner join filtered by genre.
-        *
-        * @param genre the genre to filter by
-        * @return list of BookAuthorDTO matching the genre
-        */
        @Query("SELECT new com.library.entity.BookAuthorDTO(" +
                      "b.id, b.title, b.isbn, b.publicationYear, b.genre, b.price, " +
                      "a.id, a.name, a.nationality) " +

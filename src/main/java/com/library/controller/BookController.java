@@ -13,10 +13,6 @@ import com.library.service.BookService;
 
 import jakarta.validation.Valid;
 
-/**
- * Spring MVC Controller for Book-related operations.
- * Handles create, read, and update HTTP requests.
- */
 @Controller
 @RequestMapping("/books")
 public class BookController {
@@ -30,7 +26,6 @@ public class BookController {
         this.authorService = authorService;
     }
 
-    // READ: Display the list of all books with their authors using INNER JOIN.
     @GetMapping
     public String listBooks(@RequestParam(value = "genre", required = false) String genre,
             Model model) {
@@ -43,7 +38,6 @@ public class BookController {
         return "books/list";
     }
 
-    // CREATE: Show the form to add a new book.
     @GetMapping("/new")
     public String showCreateForm(Model model) {
         model.addAttribute("book", new Book());
@@ -51,7 +45,6 @@ public class BookController {
         return "books/form";
     }
 
-    // CREATE: Handle book creation form submission.
     @PostMapping
     public String createBook(@Valid @ModelAttribute("book") Book book,
             BindingResult bindingResult,
@@ -71,7 +64,6 @@ public class BookController {
         }
     }
 
-    // UPDATE: Show the form to edit an existing book.
     @GetMapping("/edit/{id}")
     public String showEditForm(@PathVariable Long id, Model model) {
         Book book = bookService.getBookById(id);
@@ -80,7 +72,6 @@ public class BookController {
         return "books/edit";
     }
 
-    // UPDATE: Handle book update form submission.
     @PostMapping("/update/{id}")
     public String updateBook(@PathVariable Long id,
             @Valid @ModelAttribute("book") Book book,

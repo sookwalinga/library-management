@@ -5,10 +5,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-/**
- * Data Transfer Object for the inner join query result
- * between Books and Authors entities.
- */
 @Getter
 @Setter
 @NoArgsConstructor

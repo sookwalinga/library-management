@@ -10,7 +10,6 @@ import java.util.List;
 import java.util.Optional;
 
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -25,11 +24,7 @@ import com.library.exception.DataIntegrityException;
 import com.library.exception.ResourceNotFoundException;
 import com.library.repository.BookRepository;
 
-/**
- * Unit tests for the BookService using Mockito.
- */
 @ExtendWith(MockitoExtension.class)
-@DisplayName("BookService Tests")
 class BookServiceTest {
 
     @Mock
@@ -54,7 +49,6 @@ class BookServiceTest {
     }
 
     @Test
-    @DisplayName("saveBook() should associate book with author and save")
     void testSaveBook() {
         when(authorService.getAuthorById(1L)).thenReturn(author);
         when(bookRepository.save(any(Book.class))).thenReturn(book);
@@ -67,7 +61,6 @@ class BookServiceTest {
     }
 
     @Test
-    @DisplayName("saveBook() should wrap DataIntegrityViolationException")
     void testSaveBook_DataIntegrityException() {
         when(authorService.getAuthorById(1L)).thenReturn(author);
         when(bookRepository.save(any(Book.class)))
@@ -78,7 +71,6 @@ class BookServiceTest {
     }
 
     @Test
-    @DisplayName("getAllBooks() should return list from repository")
     void testGetAllBooks() {
         when(bookRepository.findAll()).thenReturn(Arrays.asList(book));
 
@@ -88,7 +80,6 @@ class BookServiceTest {
     }
 
     @Test
-    @DisplayName("getBookById() should return book when found")
     void testGetBookById_Found() {
         when(bookRepository.findById(1L)).thenReturn(Optional.of(book));
 
@@ -98,7 +89,6 @@ class BookServiceTest {
     }
 
     @Test
-    @DisplayName("getBookById() should throw ResourceNotFoundException when not found")
     void testGetBookById_NotFound() {
         when(bookRepository.findById(99L)).thenReturn(Optional.empty());
 
@@ -107,7 +97,6 @@ class BookServiceTest {
     }
 
     @Test
-    @DisplayName("getAllBooksWithAuthors() should call inner-join repository method")
     void testGetAllBooksWithAuthors() {
         BookAuthorDTO dto = new BookAuthorDTO(
                 1L, "Harry Potter", "ISBN-001", 1997, "Fantasy", 19.99,
@@ -122,7 +111,6 @@ class BookServiceTest {
     }
 
     @Test
-    @DisplayName("updateBook() should update fields and save with new author")
     void testUpdateBook() {
         Book updated = new Book("Updated Title", "ISBN-002", 2000,
                 "Adventure", 25.0, null);

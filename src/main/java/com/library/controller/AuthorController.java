@@ -12,11 +12,6 @@ import com.library.service.AuthorService;
 
 import jakarta.validation.Valid;
 
-/**
- * Spring MVC Controller for Author-related operations.
- * Handles create, read, and update HTTP requests.
- */
-
 @Controller
 @RequestMapping("/authors")
 public class AuthorController {
@@ -28,21 +23,18 @@ public class AuthorController {
         this.authorService = authorService;
     }
 
-    // READ: Display the list of all authors.
     @GetMapping
     public String listAuthors(Model model) {
         model.addAttribute("authors", authorService.getAllAuthors());
         return "authors/list";
     }
 
-    // CREATE: Show the form to add a new author.
     @GetMapping("/new")
     public String showCreateForm(Model model) {
         model.addAttribute("author", new Author());
         return "authors/form";
     }
 
-    // CREATE: Handle author creation form submission.
     @PostMapping
     public String createAuthor(@Valid @ModelAttribute("author") Author author,
             BindingResult bindingResult,
@@ -59,7 +51,6 @@ public class AuthorController {
         }
     }
 
-    // UPDATE: Show the form to edit an existing author.
     @GetMapping("/edit/{id}")
     public String showEditForm(@PathVariable Long id, Model model) {
         Author author = authorService.getAuthorById(id);
@@ -67,7 +58,6 @@ public class AuthorController {
         return "authors/edit";
     }
 
-    // UPDATE: Handle author update form submission.
     @PostMapping("/update/{id}")
     public String updateAuthor(@PathVariable Long id,
             @Valid @ModelAttribute("author") Author author,

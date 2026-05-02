@@ -11,8 +11,6 @@ import com.library.entity.Book;
 import com.library.repository.AuthorRepository;
 import com.library.repository.BookRepository;
 
-// Initializes the database with 10 sample authors and 10 sample books on startup.
-
 @Configuration
 public class DataInitializer {
 
@@ -25,7 +23,6 @@ public class DataInitializer {
                                 return;
                         }
 
-                        // Create 10 authors
                         List<Author> authors = List.of(
                                         new Author("J.K. Rowling", "British", 1965,
                                                         "Author of the Harry Potter series."),
@@ -47,7 +44,6 @@ public class DataInitializer {
 
                         List<Author> savedAuthors = authorRepository.saveAll(authors);
 
-                        // Create 10 books, each linked to an author
                         List<Book> books = List.of(
                                         new Book("Harry Potter and the Philosopher's Stone", "978-0747532699",
                                                         1997, "Fantasy", 19.99, savedAuthors.get(0)),

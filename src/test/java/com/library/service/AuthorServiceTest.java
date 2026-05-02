@@ -10,7 +10,6 @@ import java.util.List;
 import java.util.Optional;
 
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -23,11 +22,7 @@ import com.library.exception.DataIntegrityException;
 import com.library.exception.ResourceNotFoundException;
 import com.library.repository.AuthorRepository;
 
-/**
- * Unit tests for the AuthorService using Mockito to mock the repository.
- */
 @ExtendWith(MockitoExtension.class)
-@DisplayName("AuthorService Tests")
 class AuthorServiceTest {
 
     @Mock
@@ -45,7 +40,6 @@ class AuthorServiceTest {
     }
 
     @Test
-    @DisplayName("saveAuthor() should call repository.save() and return saved author")
     void testSaveAuthor() {
         when(authorRepository.save(any(Author.class))).thenReturn(author);
 
@@ -57,7 +51,6 @@ class AuthorServiceTest {
     }
 
     @Test
-    @DisplayName("saveAuthor() should wrap DataIntegrityViolationException in custom exception")
     void testSaveAuthor_DataIntegrityException() {
         when(authorRepository.save(any(Author.class)))
                 .thenThrow(new DataIntegrityViolationException("duplicate key"));
@@ -67,7 +60,6 @@ class AuthorServiceTest {
     }
 
     @Test
-    @DisplayName("getAllAuthors() should return list from repository")
     void testGetAllAuthors() {
         Author author2 = new Author("Mark Twain", "American", 1835, "Bio");
         when(authorRepository.findAll()).thenReturn(Arrays.asList(author, author2));
@@ -79,7 +71,6 @@ class AuthorServiceTest {
     }
 
     @Test
-    @DisplayName("getAuthorById() should return author when found")
     void testGetAuthorById_Found() {
         when(authorRepository.findById(1L)).thenReturn(Optional.of(author));
 
@@ -89,7 +80,6 @@ class AuthorServiceTest {
     }
 
     @Test
-    @DisplayName("getAuthorById() should throw ResourceNotFoundException when not found")
     void testGetAuthorById_NotFound() {
         when(authorRepository.findById(99L)).thenReturn(Optional.empty());
 
@@ -98,7 +88,6 @@ class AuthorServiceTest {
     }
 
     @Test
-    @DisplayName("updateAuthor() should update existing fields and save")
     void testUpdateAuthor() {
         Author updates = new Author("J.K. Rowling Updated", "English", 1965, "New bio");
 

@@ -11,10 +11,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-/**
- * Author entity representing a book author.
- * One author can write many books (One-to-Many relationship).
- */
 @Entity
 @Table(name = "authors")
 @Getter
@@ -41,10 +37,6 @@ public class Author {
     @Column(length = 500)
     private String biography;
 
-    /**
-     * One-to-Many relationship with Book.
-     * An author can have multiple books.
-     */
     @OneToMany(mappedBy = "author", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Book> books = new ArrayList<>();
 

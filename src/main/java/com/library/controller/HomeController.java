@@ -8,9 +8,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import com.library.service.AuthorService;
 import com.library.service.BookService;
 
-/**
- * Controller for the home/landing page.
- */
 @Controller
 public class HomeController {
 
