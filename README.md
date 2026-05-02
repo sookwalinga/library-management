@@ -143,5 +143,3 @@ Tests included:
 
 Edit `src/main/resources/application.properties`, comment out the H2 lines and
 uncomment the MySQL section, then update the username/password.
-
-Author: ***

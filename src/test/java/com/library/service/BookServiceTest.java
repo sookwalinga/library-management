@@ -1,11 +1,14 @@
 package com.library.service;
 
-import com.library.entity.Author;
-import com.library.entity.Book;
-import com.library.entity.BookAuthorDTO;
-import com.library.exception.DataIntegrityException;
-import com.library.exception.ResourceNotFoundException;
-import com.library.repository.BookRepository;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.*;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.Optional;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -15,14 +18,12 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.dao.DataIntegrityViolationException;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
-
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.*;
+import com.library.entity.Author;
+import com.library.entity.Book;
+import com.library.entity.BookAuthorDTO;
+import com.library.exception.DataIntegrityException;
+import com.library.exception.ResourceNotFoundException;
+import com.library.repository.BookRepository;
 
 /**
  * Unit tests for the BookService using Mockito.
@@ -110,8 +111,7 @@ class BookServiceTest {
     void testGetAllBooksWithAuthors() {
         BookAuthorDTO dto = new BookAuthorDTO(
                 1L, "Harry Potter", "ISBN-001", 1997, "Fantasy", 19.99,
-                1L, "J.K. Rowling", "British"
-        );
+                1L, "J.K. Rowling", "British");
         when(bookRepository.findAllBooksWithAuthors()).thenReturn(Arrays.asList(dto));
 
         List<BookAuthorDTO> results = bookService.getAllBooksWithAuthors();

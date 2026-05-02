@@ -1,15 +1,16 @@
 package com.library.service;
 
-import com.library.entity.Author;
-import com.library.exception.DataIntegrityException;
-import com.library.exception.ResourceNotFoundException;
-import com.library.repository.AuthorRepository;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
+import com.library.entity.Author;
+import com.library.exception.DataIntegrityException;
+import com.library.exception.ResourceNotFoundException;
+import com.library.repository.AuthorRepository;
 
 /**
  * Service class for Author business logic.
@@ -37,9 +38,9 @@ public class AuthorService {
             return authorRepository.save(author);
         } catch (DataIntegrityViolationException ex) {
             throw new DataIntegrityException(
-                    "Could not save author due to a data integrity violation: " + ex.getMostSpecificCause().getMessage(),
-                    ex
-            );
+                    "Could not save author due to a data integrity violation: "
+                            + ex.getMostSpecificCause().getMessage(),
+                    ex);
         }
     }
 
@@ -69,7 +70,7 @@ public class AuthorService {
     /**
      * Update an existing author.
      *
-     * @param id the ID of the author to update
+     * @param id            the ID of the author to update
      * @param updatedAuthor the new author data
      * @return the updated author
      */
@@ -84,9 +85,9 @@ public class AuthorService {
             return authorRepository.save(existing);
         } catch (DataIntegrityViolationException ex) {
             throw new DataIntegrityException(
-                    "Could not update author due to a data integrity violation: " + ex.getMostSpecificCause().getMessage(),
-                    ex
-            );
+                    "Could not update author due to a data integrity violation: "
+                            + ex.getMostSpecificCause().getMessage(),
+                    ex);
         }
     }
 }

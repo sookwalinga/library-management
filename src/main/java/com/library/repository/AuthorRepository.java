@@ -1,11 +1,12 @@
 package com.library.repository;
 
-import com.library.entity.Author;
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
-import java.util.Optional;
+import com.library.entity.Author;
 
 /**
  * Repository interface for Author entity.

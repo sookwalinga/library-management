@@ -1,17 +1,18 @@
 package com.library.service;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import com.library.entity.Author;
 import com.library.entity.Book;
 import com.library.entity.BookAuthorDTO;
 import com.library.exception.DataIntegrityException;
 import com.library.exception.ResourceNotFoundException;
 import com.library.repository.BookRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataIntegrityViolationException;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
 
 /**
  * Service class for Book business logic.
@@ -32,7 +33,7 @@ public class BookService {
     /**
      * Save a new book with author association.
      *
-     * @param book the book to save
+     * @param book     the book to save
      * @param authorId the ID of the associated author
      * @return the saved book
      */
@@ -45,8 +46,7 @@ public class BookService {
             throw new DataIntegrityException(
                     "Could not save book. Possibly a duplicate ISBN or invalid data: "
                             + ex.getMostSpecificCause().getMessage(),
-                    ex
-            );
+                    ex);
         }
     }
 
@@ -96,9 +96,9 @@ public class BookService {
     /**
      * Update an existing book.
      *
-     * @param id the book ID
+     * @param id          the book ID
      * @param updatedBook the new book data
-     * @param authorId the (possibly new) author ID
+     * @param authorId    the (possibly new) author ID
      * @return the updated book
      */
     public Book updateBook(Long id, Book updatedBook, Long authorId) {
@@ -118,8 +118,7 @@ public class BookService {
             throw new DataIntegrityException(
                     "Could not update book. Possibly a duplicate ISBN or invalid data: "
                             + ex.getMostSpecificCause().getMessage(),
-                    ex
-            );
+                    ex);
         }
     }
 }

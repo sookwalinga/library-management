@@ -26,9 +26,6 @@
                             </div>
                             <hr class="section-divider">
 
-
-
-
                             <div class="filter-bar">
                                 <form action="${pageContext.request.contextPath}/books" method="get">
                                     <label for="genre">Filter by Genre:</label>
@@ -92,7 +89,7 @@
                                                         <td>
                                                             <div class="td-actions">
                                                                 <a href="${pageContext.request.contextPath}/books/edit/${book.bookId}"
-                                                                    class="btn btn-warning btn-sm">Edit</a>
+                                                                    class="btn btn-edit btn-sm">Edit</a>
                                                             </div>
                                                         </td>
                                                     </tr>

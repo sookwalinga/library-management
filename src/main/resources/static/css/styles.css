@@ -77,6 +77,27 @@ body {
     height: 64px;
 }
 
+.navbar-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+}
+
+.navbar-logo {
+    width: 36px;
+    height: 36px;
+    flex-shrink: 0;
+    /* border-radius: 9px;
+    box-shadow: 0 0 0 1px rgba(34, 211, 238, 0.2), 0 4px 12px rgba(13, 148, 136, 0.35); */
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.navbar-brand:hover .navbar-logo {
+    transform: scale(1.08);
+    /* box-shadow: 0 0 0 1px rgba(34, 211, 238, 0.4), 0 6px 18px rgba(13, 148, 136, 0.5); */
+}
+
 .navbar h1 {
     font-size: 1.2rem;
     font-weight: 700;
@@ -149,7 +170,7 @@ h2 {
 .section-divider {
     border: none;
     border-top: 2px solid var(--primary-light);
-    margin: 0 0 24px 0;
+    margin: 0 0 8px 0;
 }
 
 /* ── Buttons ── */
@@ -221,6 +242,26 @@ h2 {
 .btn-sm {
     padding: 5px 12px;
     font-size: 0.8rem;
+}
+
+.btn-edit {
+    background: var(--primary-light);
+    color: var(--primary-dark);
+    border: 1px solid rgba(13, 148, 136, 0.2);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-edit:hover {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--accent-dark) 100%);
+    color: white !important;
+    border-color: transparent;
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 10px 15px -3px rgba(13, 148, 136, 0.4), 0 4px 6px -2px rgba(13, 148, 136, 0.1);
+}
+
+.btn-edit:active {
+    transform: translateY(0) scale(1);
 }
 
 .action-bar {

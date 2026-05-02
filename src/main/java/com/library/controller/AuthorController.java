@@ -1,19 +1,21 @@
 package com.library.controller;
 
-import com.library.entity.Author;
-import com.library.exception.DataIntegrityException;
-import com.library.service.AuthorService;
-import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import com.library.entity.Author;
+import com.library.exception.DataIntegrityException;
+import com.library.service.AuthorService;
+
+import jakarta.validation.Valid;
+
 /**
- Spring MVC Controller for Author-related operations.
- Handles create, read, and update HTTP requests.
-*/
+ * Spring MVC Controller for Author-related operations.
+ * Handles create, read, and update HTTP requests.
+ */
 
 @Controller
 @RequestMapping("/authors")
@@ -26,7 +28,6 @@ public class AuthorController {
         this.authorService = authorService;
     }
 
-    
     // READ: Display the list of all authors.
     @GetMapping
     public String listAuthors(Model model) {
@@ -44,8 +45,8 @@ public class AuthorController {
     // CREATE: Handle author creation form submission.
     @PostMapping
     public String createAuthor(@Valid @ModelAttribute("author") Author author,
-                               BindingResult bindingResult,
-                               Model model) {
+            BindingResult bindingResult,
+            Model model) {
         if (bindingResult.hasErrors()) {
             return "authors/form";
         }
@@ -69,9 +70,9 @@ public class AuthorController {
     // UPDATE: Handle author update form submission.
     @PostMapping("/update/{id}")
     public String updateAuthor(@PathVariable Long id,
-                               @Valid @ModelAttribute("author") Author author,
-                               BindingResult bindingResult,
-                               Model model) {
+            @Valid @ModelAttribute("author") Author author,
+            BindingResult bindingResult,
+            Model model) {
         if (bindingResult.hasErrors()) {
             return "authors/edit";
         }

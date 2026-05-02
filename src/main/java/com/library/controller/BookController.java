@@ -1,19 +1,21 @@
 package com.library.controller;
 
-import com.library.entity.Book;
-import com.library.exception.DataIntegrityException;
-import com.library.service.AuthorService;
-import com.library.service.BookService;
-import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import com.library.entity.Book;
+import com.library.exception.DataIntegrityException;
+import com.library.service.AuthorService;
+import com.library.service.BookService;
+
+import jakarta.validation.Valid;
+
 /**
-  Spring MVC Controller for Book-related operations.
-  Handles create, read, and update HTTP requests.
+ * Spring MVC Controller for Book-related operations.
+ * Handles create, read, and update HTTP requests.
  */
 @Controller
 @RequestMapping("/books")
@@ -31,7 +33,7 @@ public class BookController {
     // READ: Display the list of all books with their authors using INNER JOIN.
     @GetMapping
     public String listBooks(@RequestParam(value = "genre", required = false) String genre,
-                            Model model) {
+            Model model) {
         if (genre != null && !genre.isBlank()) {
             model.addAttribute("books", bookService.getBooksWithAuthorsByGenre(genre));
             model.addAttribute("filterGenre", genre);
@@ -52,9 +54,9 @@ public class BookController {
     // CREATE: Handle book creation form submission.
     @PostMapping
     public String createBook(@Valid @ModelAttribute("book") Book book,
-                             BindingResult bindingResult,
-                             @RequestParam("authorId") Long authorId,
-                             Model model) {
+            BindingResult bindingResult,
+            @RequestParam("authorId") Long authorId,
+            Model model) {
         if (bindingResult.hasErrors()) {
             model.addAttribute("authors", authorService.getAllAuthors());
             return "books/form";
@@ -81,10 +83,10 @@ public class BookController {
     // UPDATE: Handle book update form submission.
     @PostMapping("/update/{id}")
     public String updateBook(@PathVariable Long id,
-                             @Valid @ModelAttribute("book") Book book,
-                             BindingResult bindingResult,
-                             @RequestParam("authorId") Long authorId,
-                             Model model) {
+            @Valid @ModelAttribute("book") Book book,
+            BindingResult bindingResult,
+            @RequestParam("authorId") Long authorId,
+            Model model) {
         if (bindingResult.hasErrors()) {
             model.addAttribute("authors", authorService.getAllAuthors());
             return "books/edit";
